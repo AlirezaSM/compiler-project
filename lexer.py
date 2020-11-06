@@ -75,11 +75,11 @@ class Lexer:
     t_DIV = r'\/'
     t_MOD = r'\%'
     t_GT = r'\>'
-    t_GE = r'\>\=' #??
+    t_GE = r'\>\='
     t_LT = r'\<'
-    t_LE = r'\<\=' #??
-    t_EQ = r'\=\=' #??
-    t_NE = r'\!\=' #??
+    t_LE = r'\<\='
+    t_EQ = r'\=\='
+    t_NE = r'\!\='
     # BRACKETS
     t_LCB = r'\{'
     t_RCB = r'\}'
@@ -93,7 +93,7 @@ class Lexer:
     t_COMMA = r','
 
     def t_ERROR(self, t):
-        r'([0-9]+[a-zA-z_]+)|([A-Z]+[a-zA-z_]*)'
+        r'([0-9]+[a-zA-z_]+)|([A-Z]+[a-zA-z_]*)|([\%\/\-\*\+]+[\%\/\-\*\+]+)'
         return t
 
     def t_FLOATNUMBER(self, t):
