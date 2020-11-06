@@ -51,8 +51,8 @@ class Lexer:
     t_FLOAT = r'float'
     t_BOOLEAN = r'bool'
     t_FUNCTION = r'fun'
-    t_TRUE = r'True'
-    t_FALSE = r'False'
+    #t_TRUE = r'True'
+    #t_FALSE = r'False'
     t_PRINT = r'print'
     t_RETURN = r'return'
     t_MAIN = r'main'
@@ -91,9 +91,23 @@ class Lexer:
     t_SEMICOLON = r';'
     t_COLON = r':'
     t_COMMA = r','
+   #
+    def t_FALSE(self, t):
+        r'False'
+        t.value = False
+        return t
+
+    def t_TRUE(self, t):
+        r'True'
+        t.value = True
+        return t
 
     def t_ERROR(self, t):
-        r'([0-9]+[a-zA-z_]+)|([A-Z]+[a-zA-z_]*)|([\%\/\-\*\+]+\s*[\%\/\-\*\+]+)'
+        r"""([0-9]+[a-zA-Z_]+)
+        | ([A-Z]+ [a-zA-Z_]*)
+        | ([\%\/\-\*\+]+\s*[\%\/\-\*\+]+ [\%\/\-\*\+\s]*)
+        | ([0-9]+\.[0-9]+\.[0-9\.]*)
+        """
         return t
 
     def t_FLOATNUMBER(self, t):
