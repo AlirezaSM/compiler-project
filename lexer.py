@@ -93,7 +93,7 @@ class Lexer:
     t_COMMA = r','
 
     def t_ERROR(self, t):
-        r'([0-9]+[a-zA-z_]+)|([A-Z]+[a-zA-z_]*)|([\%\/\-\*\+]+[\%\/\-\*\+]+)'
+        r'([0-9]+[a-zA-z_]+)|([A-Z]+[a-zA-z_]*)|([\%\/\-\*\+]+\s*[\%\/\-\*\+]+)'
         return t
 
     def t_FLOATNUMBER(self, t):
