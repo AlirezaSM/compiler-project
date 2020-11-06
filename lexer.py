@@ -1,4 +1,5 @@
 from ply import lex
+import math
 
 
 class Lexer:
@@ -95,10 +96,17 @@ class Lexer:
         r'([0-9]+[a-zA-z_]+)|([A-Z]+[a-zA-z_]*)'
         return t
 
+    def t_FLOATNUMBER(self, t):
+        r'[0-9]+\.[0-9]+'
+        if math.floor(float(t.value)) >= 1000000000:
+            t.type = 'ERROR'
+        else:
+            t.value = float(t.value)
+        return t
 
     def t_INTEGERNUMBER(self, t):
-        r'(\d+)'
-        if(int(t.value) >= 1000000000):
+        r'[0-9]+'
+        if int(t.value) >= 1000000000:
             t.type = 'ERROR'
         else:
             t.value = int(t.value)
