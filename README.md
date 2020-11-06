@@ -1,2 +1,2 @@
 # Compiler Project
-This is our(with @a-bonham) compiler project.
+This is our compiler project.
