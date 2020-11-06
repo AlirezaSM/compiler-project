@@ -1,2 +1,2 @@
 #Compiler Project
-	his is our compiler project.
+This is our compiler project.
