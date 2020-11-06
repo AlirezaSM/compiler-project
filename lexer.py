@@ -123,3 +123,7 @@ class Lexer:
     def build(self, **kwargs):
         self.lexer = lex.lex(module=self, **kwargs)
         return self.lexer
+
+    # TODO
+    # Float number (< 10 digit)
+    # No consecutive operators
