@@ -1,8 +1,5 @@
 from ply import yacc
 from lexer import Lexer
-from nonTerminal import NonTerminal
-from codeGenerator import CodeGenerator
-
 
 class Parser:
 
@@ -52,7 +49,7 @@ class Parser:
                   | idlist COMMA iddec""")
 
     def p_vardec(self, p):
-        "vardec : idlist COLON type"
+        "vardec : idlist COLON type SEMICOLON"
         print("vardec : idlist COLON type")
 
     def p_funcdec(self, p):
@@ -69,9 +66,9 @@ class Parser:
 
     def p_paramdecslist(self, p):
         """paramdecslist : paramdec
-                         | paramdecslist COLON paramdec"""
+                         | paramdecslist COMMA paramdec"""
         print("""paramdecslist : paramdec
-                         | paramdecslist COLON paramdec""")
+                         | paramdecslist COMMA paramdec""")
 
     def p_paramdec(self, p):
         """paramdec : ID COLON type
@@ -104,10 +101,10 @@ class Parser:
     def p_cases(self, p):
         """cases : case
                  | cases case
-                 |empty"""
+                 | empty"""
         print("""cases : case
                  | cases case
-                 |empty""")
+                 | empty""")
 
     def p_stmt(self, p):
         """stmt : RETURN exp SEMICOLON
@@ -120,7 +117,7 @@ class Parser:
                 | FOR LRB ID IN ID RRB stmt
                 | IF LRB exp RRB stmt elseiflist
                 | IF LRB exp RRB stmt elseiflist ELSE stmt
-                | PRINT LRB ID RRB"""
+                | PRINT LRB ID RRB SEMICOLON"""
         print("""stmt : RETURN exp SEMICOLON
                 | exp SEMICOLON
                 | block
@@ -131,15 +128,15 @@ class Parser:
                 | FOR LRB ID IN ID RRB stmt
                 | IF LRB exp RRB stmt elseiflist
                 | IF LRB exp RRB stmt elseiflist ELSE stmt
-                | PRINT LRB ID RRB""")
+                | PRINT LRB ID RRB SEMICOLON""")
 
     def p_elseiflist(self, p):
         """elseiflist : ELSEIF LRB exp RRB stmt
                       | elseiflist ELSEIF LRB exp RRB stmt
-                      |empty"""
+                      | empty"""
         print("""elseiflist : ELSEIF LRB exp RRB stmt
                       | elseiflist ELSEIF LRB exp RRB stmt
-                      |empty""")
+                      | empty""")
 
     def p_relopexp(self, p):
         """relopexp : exp relop exp
@@ -219,10 +216,10 @@ class Parser:
         "empty :"
         print("empty :")
 
-    precedence = (
+    """precedence = (
         ('left', 'SUM', 'SUB'),
         ('left', 'MUL', 'DIV')
-    )
+    )"""
 
     def p_error(self, p):
         print(p.value)
