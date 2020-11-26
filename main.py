@@ -1,11 +1,14 @@
 from lexer import Lexer
+from parser import Parser
 
 lexer = Lexer().build()
-file = open('test3.txt')
+file = open('test1.txt')
 text_input = file.read()
 file.close()
 lexer.input(text_input)
-while True:
+"""while True:
     tok = lexer.token()
     if not tok: break
-    print(tok)
+    print(tok)"""
+parser = Parser()
+parser.build().parse(text_input, lexer, False)
