@@ -162,10 +162,19 @@ class Parser:
         "empty : "
         pass
 
-    """precedence = (
+    precedence = (
+        ('left')
+        ('left', 'SEMICOLON'),
+        ('left', 'COMMA'),
+        ('right', 'ASSIGN'),
+        ('left', 'OR'),
+        ('left', 'AND'),
+        ('left', 'EQ', 'NE'),
+        ('left', 'LT', 'GT', 'GE', 'LE'),
         ('left', 'SUM', 'SUB'),
-        ('left', 'MUL', 'DIV')
-    )"""
+        ('left', 'MUL', 'DIV', 'MOD'),
+        ('left', 'LRB', 'RRB', 'LSB', 'RSB')
+    )
 
     def p_error(self, p):
         print(p.value)
