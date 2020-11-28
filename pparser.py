@@ -9,13 +9,13 @@ class Parser:
         pass
 
     def p_program(self, p):
-        """program : declist MAIN LRB RRB block"""
+        """program : declist MAIN LRB RRB block
+                    | MAIN LRB RRB block"""
         pass
 
     def p_declist(self, p):
         """declist : dec
-                   | declist dec
-                   | empty"""
+                   | declist dec"""
         pass
 
     def p_dec(self, p):
@@ -30,9 +30,9 @@ class Parser:
         pass
 
     def p_iddec(self, p):
-        """iddec : ID %prec P6
-                 | ID LSB exp RSB %prec P6
-                 | ID ASSIGN exp %prec P4"""
+        """iddec : ID
+                 | ID LSB exp RSB
+                 | assign """
         pass
 
     def p_idlist(self, p):
@@ -51,7 +51,7 @@ class Parser:
 
     def p_paramdecs(self, p):
         """paramdecs : paramdecslist
-                     | empty"""
+                     | """
         pass
 
     def p_paramdecslist(self, p):
@@ -71,12 +71,12 @@ class Parser:
     def p_stmtlist(self, p):
         """stmtlist : stmt
                     | stmtlist stmt
-                    | empty"""
+                    | """
         pass
 
     def p_lvalue(self, p):
-        """lvalue : ID %prec P7
-                  | ID LSB exp RSB %prec P7"""
+        """lvalue : ID
+                  | ID LSB exp RSB"""
         pass
 
     def p_case(self, p):
@@ -86,7 +86,7 @@ class Parser:
     def p_cases(self, p):
         """cases : case
                  | cases case
-                 | empty"""
+                 | """
         pass
 
     def p_stmt(self, p):
@@ -106,25 +106,30 @@ class Parser:
     def p_elseiflist(self, p):
         """elseiflist : ELSEIF LRB exp RRB stmt
                       | elseiflist ELSEIF LRB exp RRB stmt
-                      | empty"""
+                      | """
         pass
 
     def p_relopexp(self, p):
-        """relopexp : exp relop exp %prec P3
+        """relopexp : exp relop exp
                     | relopexp relop exp"""
         pass
 
     def p_exp(self, p):
-        """exp : lvalue ASSIGN exp %prec P5
-               | exp operator exp %prec P2
+        """exp : assign
+               | exp operator exp
                | relopexp
                | const
                | lvalue
                | ID LRB explist RRB
                | LRB exp RRB
                | ID LRB RRB
-               | SUB exp %prec P1
-               | NOT exp %prec P1"""
+               | SUB exp
+               | NOT exp"""
+        pass
+
+    def p_assign(self, p):
+        """ assign : lvalue ASSIGN exp
+        """
         pass
 
     def p_operator(self, p):
@@ -158,9 +163,7 @@ class Parser:
                    | explist COMMA exp"""
         pass
 
-    def p_empty(self, p):
-        "empty : "
-        pass
+    # else be akharin if bechasbe
 
     #precedence = (
     #    ('left', 'LT', 'GT', 'LE', 'GE', 'NE', 'EQ'),
@@ -178,23 +181,23 @@ class Parser:
     #)
 
     precedence = (
-        ('left', 'SEMICOLON'),
-        ('left', 'COMMA'),
+        # ('left', 'SEMICOLON'),
+        # ('left', 'COMMA'),
         ('right', 'ASSIGN'),
         ('left', 'OR'),
         ('left', 'AND'),
         ('left', 'EQ', 'NE'),
         ('left', 'LT', 'GT', 'GE', 'LE'),
         ('left', 'SUM', 'SUB'),
-        ('left', 'MUL', 'DIV', 'MOD'),
-        ('left', 'LRB', 'RRB'),
-        ('left', 'P7'),
-        ('left', 'P6'),
-        ('left', 'P5'),
-        ('left', 'P4'),
-        ('left', 'P3'),
-        ('left', 'P2'),
-        ('left', 'P1')
+        ('left', 'MUL', 'DIV', 'MOD')
+        # ('left', 'LRB', 'RRB'),
+        # ('left', 'P7'),
+        # ('left', 'P6'),
+        # ('left', 'P5'),
+        # ('left', 'P4'),
+        # ('left', 'P3'),
+        # ('left', 'P2'),
+        # ('left', 'P1')
     )
 
     def p_error(self, p):
