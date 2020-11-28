@@ -167,26 +167,7 @@ class Parser:
                    | explist COMMA exp"""
         pass
 
-    # else be akharin if bechasbe
-
-    #precedence = (
-    #    ('left', 'LT', 'GT', 'LE', 'GE', 'NE', 'EQ'),
-    #    ('left', 'SUM', 'SUB'),
-    #    ('left', 'MUL', 'DIV', 'MOD'),
-    #    ('left', 'OR', 'AND'),
-    #    ('left', 'LRB', 'RRB'),
-    #    ('left', 'P7'),
-    #    ('left', 'P6'),
-    #    ('left', 'P5'),
-    #    ('left', 'P4'),
-    #    ('left', 'P3'),
-    #    ('left', 'P2'),
-    #    ('left', 'P1')
-    #)
-
     precedence = (
-        # ('left', 'SEMICOLON'),
-        # ('left', 'COMMA'),
         ('right', 'ASSIGN'),
         ('left', 'P3'),
         ('left', 'ELSE', 'ELSEIF'),
@@ -199,14 +180,6 @@ class Parser:
         ('left', 'SUM', 'SUB'),
         ('left', 'MUL', 'DIV', 'MOD'),
         ('left', 'NOT')
-        # ('left', 'LRB', 'RRB'),
-        # ('left', 'P7'),
-        # ('left', 'P6'),
-        # ('left', 'P5'),
-        # ('left', 'P4'),
-        # ('left', 'P3'),
-        # ('left', 'P2'),
-        # ('left', 'P1')
     )
 
     def p_error(self, p):
