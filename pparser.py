@@ -65,13 +65,13 @@ class Parser:
         pass
 
     def p_block(self, p):
-        """block : LCB stmtlist RCB"""
+        """block : LCB stmtlist RCB
+                 | LCB RCB"""
         pass
 
     def p_stmtlist(self, p):
         """stmtlist : stmt
-                    | stmtlist stmt
-                    | """
+                    | stmtlist stmt"""
         pass
 
     def p_lvalue(self, p):
@@ -85,8 +85,7 @@ class Parser:
 
     def p_cases(self, p):
         """cases : case
-                 | cases case
-                 | """
+                 | cases case"""
         pass
 
     def p_stmt(self, p):
@@ -96,6 +95,7 @@ class Parser:
                 | vardec
                 | WHILE LRB exp RRB stmt
                 | ON LRB exp RRB LCB cases RCB SEMICOLON
+                | ON LRB exp RRB LCB RCB SEMICOLON
                 | FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt
                 | FOR LRB ID IN ID RRB stmt
                 | IF LRB exp RRB stmt elseiflist
@@ -116,8 +116,8 @@ class Parser:
 
     def p_exp(self, p):
         """exp : assign
-               | exp operator exp
-               | relopexp
+               | exp operator exp %prec P1
+               | relopexp %prec P2
                | const
                | lvalue
                | ID LRB explist RRB
@@ -184,12 +184,15 @@ class Parser:
         # ('left', 'SEMICOLON'),
         # ('left', 'COMMA'),
         ('right', 'ASSIGN'),
+        ('right', 'P2'),
+        ('right', 'P1'),
         ('left', 'OR'),
         ('left', 'AND'),
         ('left', 'EQ', 'NE'),
         ('left', 'LT', 'GT', 'GE', 'LE'),
         ('left', 'SUM', 'SUB'),
-        ('left', 'MUL', 'DIV', 'MOD')
+        ('left', 'MUL', 'DIV', 'MOD'),
+        ('left', 'NOT')
         # ('left', 'LRB', 'RRB'),
         # ('left', 'P7'),
         # ('left', 'P6'),

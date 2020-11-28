@@ -2,7 +2,7 @@ from lexer import Lexer
 from pparser import Parser
 
 lexer = Lexer().build()
-file = open('test3.txt')
+file = open('test2.txt')
 text_input = file.read()
 file.close()
 lexer.input(text_input)
