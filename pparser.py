@@ -98,9 +98,15 @@ class Parser:
                 | ON LRB exp RRB LCB RCB SEMICOLON
                 | FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt
                 | FOR LRB ID IN ID RRB stmt
-                | IF LRB exp RRB stmt elseiflist %prec P4
-                | IF LRB exp RRB stmt elseiflist ELSE stmt %prec P3
                 | PRINT LRB ID RRB SEMICOLON"""
+        pass
+
+    def p_stmt_if(self, p):
+        """stmt : IF LRB exp RRB stmt elseiflist %prec P3"""
+        pass
+
+    def p_stmt_if_else(self, p):
+        """stmt : IF LRB exp RRB stmt elseiflist ELSE stmt"""
         pass
 
     def p_elseiflist(self, p):
@@ -182,8 +188,8 @@ class Parser:
         # ('left', 'SEMICOLON'),
         # ('left', 'COMMA'),
         ('right', 'ASSIGN'),
-        ('left', 'P4'),
         ('left', 'P3'),
+        ('left', 'ELSE', 'ELSEIF'),
         ('left', 'P2'),
         ('left', 'P1'),
         ('left', 'OR'),

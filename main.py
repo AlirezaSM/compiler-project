@@ -2,13 +2,13 @@ from lexer import Lexer
 from pparser import Parser
 
 lexer = Lexer().build()
-file = open('test2.txt')
+file = open('test1.txt')
 text_input = file.read()
 file.close()
 lexer.input(text_input)
-while True:
-    tok = lexer.token()
-    if not tok: break
-    print(tok)
+# while True:
+#     tok = lexer.token()
+#     if not tok: break
+#     print(tok)
 parser = Parser()
 parser.build().parse(text_input, lexer, False)

@@ -1,5 +1,8 @@
-i,j,k[50]:int;
 main(){
-k[0]=1;
-k[1]=1 ;
+    if(a > 1)
+        print(a);
+    if(b == 1)
+        print(w);
+    else
+        print(b);
 }

@@ -48,9 +48,9 @@ Rule 38    stmt -> ON LRB exp RRB LCB cases RCB SEMICOLON
 Rule 39    stmt -> ON LRB exp RRB LCB RCB SEMICOLON
 Rule 40    stmt -> FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt
 Rule 41    stmt -> FOR LRB ID IN ID RRB stmt
-Rule 42    stmt -> IF LRB exp RRB stmt elseiflist
-Rule 43    stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt
-Rule 44    stmt -> PRINT LRB ID RRB SEMICOLON
+Rule 42    stmt -> PRINT LRB ID RRB SEMICOLON
+Rule 43    stmt -> IF LRB exp RRB stmt elseiflist
+Rule 44    stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt
 Rule 45    elseiflist -> elseiflist ELSEIF LRB exp RRB stmt
 Rule 46    elseiflist -> <empty>
 Rule 47    exp -> assign
@@ -92,7 +92,7 @@ BOOLEAN              : 9
 COLON                : 15 16 22 23 30
 COMMA                : 14 21 76
 DIV                  : 63
-ELSE                 : 43
+ELSE                 : 44
 ELSEIF               : 45
 EQ                   : 72
 ERROR                : 
@@ -103,8 +103,8 @@ FOR                  : 40 41
 FUNCTION             : 16 17
 GE                   : 74
 GT                   : 69
-ID                   : 10 11 16 17 22 23 28 29 41 41 44 52 54
-IF                   : 42 43
+ID                   : 10 11 16 17 22 23 28 29 41 41 42 52 54
+IF                   : 43 44
 IN                   : 41
 INTEGER              : 7
 INTEGERNUMBER        : 65
@@ -120,12 +120,12 @@ NE                   : 71
 NOT                  : 56
 ON                   : 38 39
 OR                   : 59
-PRINT                : 44
+PRINT                : 42
 RCB                  : 24 25 38 39
 RETURN               : 33
 RRB                  : 1 2 16 17 37 38 39 40 41 42 43 44 45 52 53 54
 RSB                  : 11 23 29
-SEMICOLON            : 15 33 34 38 39 40 40 44
+SEMICOLON            : 15 33 34 38 39 40 40 42
 SUB                  : 55 61
 SUM                  : 60
 TRUE                 : 67
@@ -142,8 +142,8 @@ cases                : 32 38
 const                : 30 50
 dec                  : 3 4
 declist              : 1 4
-elseiflist           : 42 43 45
-exp                  : 11 29 33 34 37 38 39 40 40 40 42 43 45 48 48 49 49 53 55 56 57 75 76
+elseiflist           : 43 44 45
+exp                  : 11 29 33 34 37 38 39 40 40 40 43 44 45 48 48 49 49 53 55 56 57 75 76
 explist              : 52 76
 funcdec              : 6
 iddec                : 13 14
@@ -155,7 +155,7 @@ paramdecs            : 16 17
 paramdecslist        : 18 21
 program              : 0
 relop                : 49
-stmt                 : 26 27 37 40 41 42 43 43 45
+stmt                 : 26 27 37 40 41 43 44 44 45
 stmtlist             : 24 27 30
 type                 : 15 16 22 23
 vardec               : 5 36
@@ -961,9 +961,9 @@ state 44
     (39) stmt -> . ON LRB exp RRB LCB RCB SEMICOLON
     (40) stmt -> . FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt
     (41) stmt -> . FOR LRB ID IN ID RRB stmt
-    (42) stmt -> . IF LRB exp RRB stmt elseiflist
-    (43) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
-    (44) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (42) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (43) stmt -> . IF LRB exp RRB stmt elseiflist
+    (44) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
     (47) exp -> . assign
     (48) exp -> . exp operator exp
     (49) exp -> . exp relop exp
@@ -995,8 +995,8 @@ state 44
     WHILE           shift and go to state 79
     ON              shift and go to state 80
     FOR             shift and go to state 81
-    IF              shift and go to state 83
-    PRINT           shift and go to state 84
+    PRINT           shift and go to state 83
+    IF              shift and go to state 84
     ID              shift and go to state 82
     LRB             shift and go to state 34
     SUB             shift and go to state 35
@@ -1030,8 +1030,8 @@ state 45
     WHILE           reduce using rule 15 (vardec -> idlist COLON type SEMICOLON .)
     ON              reduce using rule 15 (vardec -> idlist COLON type SEMICOLON .)
     FOR             reduce using rule 15 (vardec -> idlist COLON type SEMICOLON .)
-    IF              reduce using rule 15 (vardec -> idlist COLON type SEMICOLON .)
     PRINT           reduce using rule 15 (vardec -> idlist COLON type SEMICOLON .)
+    IF              reduce using rule 15 (vardec -> idlist COLON type SEMICOLON .)
     LRB             reduce using rule 15 (vardec -> idlist COLON type SEMICOLON .)
     SUB             reduce using rule 15 (vardec -> idlist COLON type SEMICOLON .)
     NOT             reduce using rule 15 (vardec -> idlist COLON type SEMICOLON .)
@@ -1583,9 +1583,9 @@ state 72
     (39) stmt -> . ON LRB exp RRB LCB RCB SEMICOLON
     (40) stmt -> . FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt
     (41) stmt -> . FOR LRB ID IN ID RRB stmt
-    (42) stmt -> . IF LRB exp RRB stmt elseiflist
-    (43) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
-    (44) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (42) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (43) stmt -> . IF LRB exp RRB stmt elseiflist
+    (44) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
     (47) exp -> . assign
     (48) exp -> . exp operator exp
     (49) exp -> . exp relop exp
@@ -1617,8 +1617,8 @@ state 72
     WHILE           shift and go to state 79
     ON              shift and go to state 80
     FOR             shift and go to state 81
-    IF              shift and go to state 83
-    PRINT           shift and go to state 84
+    PRINT           shift and go to state 83
+    IF              shift and go to state 84
     ID              shift and go to state 82
     LRB             shift and go to state 34
     SUB             shift and go to state 35
@@ -1649,8 +1649,8 @@ state 73
     WHILE           reduce using rule 25 (block -> LCB RCB .)
     ON              reduce using rule 25 (block -> LCB RCB .)
     FOR             reduce using rule 25 (block -> LCB RCB .)
-    IF              reduce using rule 25 (block -> LCB RCB .)
     PRINT           reduce using rule 25 (block -> LCB RCB .)
+    IF              reduce using rule 25 (block -> LCB RCB .)
     ID              reduce using rule 25 (block -> LCB RCB .)
     LRB             reduce using rule 25 (block -> LCB RCB .)
     SUB             reduce using rule 25 (block -> LCB RCB .)
@@ -1676,8 +1676,8 @@ state 74
     WHILE           reduce using rule 26 (stmtlist -> stmt .)
     ON              reduce using rule 26 (stmtlist -> stmt .)
     FOR             reduce using rule 26 (stmtlist -> stmt .)
-    IF              reduce using rule 26 (stmtlist -> stmt .)
     PRINT           reduce using rule 26 (stmtlist -> stmt .)
+    IF              reduce using rule 26 (stmtlist -> stmt .)
     ID              reduce using rule 26 (stmtlist -> stmt .)
     LRB             reduce using rule 26 (stmtlist -> stmt .)
     SUB             reduce using rule 26 (stmtlist -> stmt .)
@@ -1771,8 +1771,8 @@ state 77
     WHILE           reduce using rule 35 (stmt -> block .)
     ON              reduce using rule 35 (stmt -> block .)
     FOR             reduce using rule 35 (stmt -> block .)
-    IF              reduce using rule 35 (stmt -> block .)
     PRINT           reduce using rule 35 (stmt -> block .)
+    IF              reduce using rule 35 (stmt -> block .)
     ID              reduce using rule 35 (stmt -> block .)
     LRB             reduce using rule 35 (stmt -> block .)
     SUB             reduce using rule 35 (stmt -> block .)
@@ -1796,8 +1796,8 @@ state 78
     WHILE           reduce using rule 36 (stmt -> vardec .)
     ON              reduce using rule 36 (stmt -> vardec .)
     FOR             reduce using rule 36 (stmt -> vardec .)
-    IF              reduce using rule 36 (stmt -> vardec .)
     PRINT           reduce using rule 36 (stmt -> vardec .)
+    IF              reduce using rule 36 (stmt -> vardec .)
     ID              reduce using rule 36 (stmt -> vardec .)
     LRB             reduce using rule 36 (stmt -> vardec .)
     SUB             reduce using rule 36 (stmt -> vardec .)
@@ -1867,15 +1867,15 @@ state 82
 
 state 83
 
-    (42) stmt -> IF . LRB exp RRB stmt elseiflist
-    (43) stmt -> IF . LRB exp RRB stmt elseiflist ELSE stmt
+    (42) stmt -> PRINT . LRB ID RRB SEMICOLON
 
     LRB             shift and go to state 105
 
 
 state 84
 
-    (44) stmt -> PRINT . LRB ID RRB SEMICOLON
+    (43) stmt -> IF . LRB exp RRB stmt elseiflist
+    (44) stmt -> IF . LRB exp RRB stmt elseiflist ELSE stmt
 
     LRB             shift and go to state 106
 
@@ -2197,8 +2197,8 @@ state 97
     WHILE           reduce using rule 24 (block -> LCB stmtlist RCB .)
     ON              reduce using rule 24 (block -> LCB stmtlist RCB .)
     FOR             reduce using rule 24 (block -> LCB stmtlist RCB .)
-    IF              reduce using rule 24 (block -> LCB stmtlist RCB .)
     PRINT           reduce using rule 24 (block -> LCB stmtlist RCB .)
+    IF              reduce using rule 24 (block -> LCB stmtlist RCB .)
     ID              reduce using rule 24 (block -> LCB stmtlist RCB .)
     LRB             reduce using rule 24 (block -> LCB stmtlist RCB .)
     SUB             reduce using rule 24 (block -> LCB stmtlist RCB .)
@@ -2224,8 +2224,8 @@ state 98
     WHILE           reduce using rule 27 (stmtlist -> stmtlist stmt .)
     ON              reduce using rule 27 (stmtlist -> stmtlist stmt .)
     FOR             reduce using rule 27 (stmtlist -> stmtlist stmt .)
-    IF              reduce using rule 27 (stmtlist -> stmtlist stmt .)
     PRINT           reduce using rule 27 (stmtlist -> stmtlist stmt .)
+    IF              reduce using rule 27 (stmtlist -> stmtlist stmt .)
     ID              reduce using rule 27 (stmtlist -> stmtlist stmt .)
     LRB             reduce using rule 27 (stmtlist -> stmtlist stmt .)
     SUB             reduce using rule 27 (stmtlist -> stmtlist stmt .)
@@ -2284,8 +2284,8 @@ state 100
     WHILE           reduce using rule 34 (stmt -> exp SEMICOLON .)
     ON              reduce using rule 34 (stmt -> exp SEMICOLON .)
     FOR             reduce using rule 34 (stmt -> exp SEMICOLON .)
-    IF              reduce using rule 34 (stmt -> exp SEMICOLON .)
     PRINT           reduce using rule 34 (stmt -> exp SEMICOLON .)
+    IF              reduce using rule 34 (stmt -> exp SEMICOLON .)
     ID              reduce using rule 34 (stmt -> exp SEMICOLON .)
     LRB             reduce using rule 34 (stmt -> exp SEMICOLON .)
     SUB             reduce using rule 34 (stmt -> exp SEMICOLON .)
@@ -2445,8 +2445,15 @@ state 104
 
 state 105
 
-    (42) stmt -> IF LRB . exp RRB stmt elseiflist
-    (43) stmt -> IF LRB . exp RRB stmt elseiflist ELSE stmt
+    (42) stmt -> PRINT LRB . ID RRB SEMICOLON
+
+    ID              shift and go to state 121
+
+
+state 106
+
+    (43) stmt -> IF LRB . exp RRB stmt elseiflist
+    (44) stmt -> IF LRB . exp RRB stmt elseiflist ELSE stmt
     (47) exp -> . assign
     (48) exp -> . exp operator exp
     (49) exp -> . exp relop exp
@@ -2474,17 +2481,10 @@ state 105
     TRUE            shift and go to state 39
     FALSE           shift and go to state 40
 
-    exp                            shift and go to state 121
+    exp                            shift and go to state 122
     assign                         shift and go to state 31
     const                          shift and go to state 32
     lvalue                         shift and go to state 33
-
-state 106
-
-    (44) stmt -> PRINT LRB . ID RRB SEMICOLON
-
-    ID              shift and go to state 122
-
 
 state 107
 
@@ -2624,8 +2624,8 @@ state 115
     WHILE           reduce using rule 33 (stmt -> RETURN exp SEMICOLON .)
     ON              reduce using rule 33 (stmt -> RETURN exp SEMICOLON .)
     FOR             reduce using rule 33 (stmt -> RETURN exp SEMICOLON .)
-    IF              reduce using rule 33 (stmt -> RETURN exp SEMICOLON .)
     PRINT           reduce using rule 33 (stmt -> RETURN exp SEMICOLON .)
+    IF              reduce using rule 33 (stmt -> RETURN exp SEMICOLON .)
     ID              reduce using rule 33 (stmt -> RETURN exp SEMICOLON .)
     LRB             reduce using rule 33 (stmt -> RETURN exp SEMICOLON .)
     SUB             reduce using rule 33 (stmt -> RETURN exp SEMICOLON .)
@@ -2820,8 +2820,15 @@ state 120
 
 state 121
 
-    (42) stmt -> IF LRB exp . RRB stmt elseiflist
-    (43) stmt -> IF LRB exp . RRB stmt elseiflist ELSE stmt
+    (42) stmt -> PRINT LRB ID . RRB SEMICOLON
+
+    RRB             shift and go to state 131
+
+
+state 122
+
+    (43) stmt -> IF LRB exp . RRB stmt elseiflist
+    (44) stmt -> IF LRB exp . RRB stmt elseiflist ELSE stmt
     (48) exp -> exp . operator exp
     (49) exp -> exp . relop exp
     (58) operator -> . AND
@@ -2838,7 +2845,7 @@ state 121
     (73) relop -> . LE
     (74) relop -> . GE
 
-    RRB             shift and go to state 131
+    RRB             shift and go to state 132
     AND             shift and go to state 55
     OR              shift and go to state 56
     SUM             shift and go to state 57
@@ -2855,13 +2862,6 @@ state 121
 
     operator                       shift and go to state 53
     relop                          shift and go to state 54
-
-state 122
-
-    (44) stmt -> PRINT LRB ID . RRB SEMICOLON
-
-    RRB             shift and go to state 132
-
 
 state 123
 
@@ -2936,9 +2936,9 @@ state 126
     (39) stmt -> . ON LRB exp RRB LCB RCB SEMICOLON
     (40) stmt -> . FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt
     (41) stmt -> . FOR LRB ID IN ID RRB stmt
-    (42) stmt -> . IF LRB exp RRB stmt elseiflist
-    (43) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
-    (44) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (42) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (43) stmt -> . IF LRB exp RRB stmt elseiflist
+    (44) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
     (47) exp -> . assign
     (48) exp -> . exp operator exp
     (49) exp -> . exp relop exp
@@ -2969,8 +2969,8 @@ state 126
     WHILE           shift and go to state 79
     ON              shift and go to state 80
     FOR             shift and go to state 81
-    IF              shift and go to state 83
-    PRINT           shift and go to state 84
+    PRINT           shift and go to state 83
+    IF              shift and go to state 84
     ID              shift and go to state 82
     LRB             shift and go to state 34
     SUB             shift and go to state 35
@@ -3067,8 +3067,15 @@ state 130
 
 state 131
 
-    (42) stmt -> IF LRB exp RRB . stmt elseiflist
-    (43) stmt -> IF LRB exp RRB . stmt elseiflist ELSE stmt
+    (42) stmt -> PRINT LRB ID RRB . SEMICOLON
+
+    SEMICOLON       shift and go to state 139
+
+
+state 132
+
+    (43) stmt -> IF LRB exp RRB . stmt elseiflist
+    (44) stmt -> IF LRB exp RRB . stmt elseiflist ELSE stmt
     (33) stmt -> . RETURN exp SEMICOLON
     (34) stmt -> . exp SEMICOLON
     (35) stmt -> . block
@@ -3078,9 +3085,9 @@ state 131
     (39) stmt -> . ON LRB exp RRB LCB RCB SEMICOLON
     (40) stmt -> . FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt
     (41) stmt -> . FOR LRB ID IN ID RRB stmt
-    (42) stmt -> . IF LRB exp RRB stmt elseiflist
-    (43) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
-    (44) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (42) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (43) stmt -> . IF LRB exp RRB stmt elseiflist
+    (44) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
     (47) exp -> . assign
     (48) exp -> . exp operator exp
     (49) exp -> . exp relop exp
@@ -3111,8 +3118,8 @@ state 131
     WHILE           shift and go to state 79
     ON              shift and go to state 80
     FOR             shift and go to state 81
-    IF              shift and go to state 83
-    PRINT           shift and go to state 84
+    PRINT           shift and go to state 83
+    IF              shift and go to state 84
     ID              shift and go to state 82
     LRB             shift and go to state 34
     SUB             shift and go to state 35
@@ -3124,7 +3131,7 @@ state 131
     FALSE           shift and go to state 40
 
     exp                            shift and go to state 76
-    stmt                           shift and go to state 139
+    stmt                           shift and go to state 140
     block                          shift and go to state 77
     vardec                         shift and go to state 78
     assign                         shift and go to state 85
@@ -3132,13 +3139,6 @@ state 131
     lvalue                         shift and go to state 33
     idlist                         shift and go to state 7
     iddec                          shift and go to state 10
-
-state 132
-
-    (44) stmt -> PRINT LRB ID RRB . SEMICOLON
-
-    SEMICOLON       shift and go to state 140
-
 
 state 133
 
@@ -3166,8 +3166,8 @@ state 135
     WHILE           reduce using rule 37 (stmt -> WHILE LRB exp RRB stmt .)
     ON              reduce using rule 37 (stmt -> WHILE LRB exp RRB stmt .)
     FOR             reduce using rule 37 (stmt -> WHILE LRB exp RRB stmt .)
-    IF              reduce using rule 37 (stmt -> WHILE LRB exp RRB stmt .)
     PRINT           reduce using rule 37 (stmt -> WHILE LRB exp RRB stmt .)
+    IF              reduce using rule 37 (stmt -> WHILE LRB exp RRB stmt .)
     ID              reduce using rule 37 (stmt -> WHILE LRB exp RRB stmt .)
     LRB             reduce using rule 37 (stmt -> WHILE LRB exp RRB stmt .)
     SUB             reduce using rule 37 (stmt -> WHILE LRB exp RRB stmt .)
@@ -3242,8 +3242,33 @@ state 138
 
 state 139
 
-    (42) stmt -> IF LRB exp RRB stmt . elseiflist
-    (43) stmt -> IF LRB exp RRB stmt . elseiflist ELSE stmt
+    (42) stmt -> PRINT LRB ID RRB SEMICOLON .
+
+    RCB             reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    RETURN          reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    WHILE           reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    ON              reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    FOR             reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    PRINT           reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    IF              reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    ID              reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    LRB             reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    SUB             reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    NOT             reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    LCB             reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    INTEGERNUMBER   reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    FLOATNUMBER     reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    TRUE            reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    FALSE           reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    ELSE            reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    ELSEIF          reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+    WHERE           reduce using rule 42 (stmt -> PRINT LRB ID RRB SEMICOLON .)
+
+
+state 140
+
+    (43) stmt -> IF LRB exp RRB stmt . elseiflist
+    (44) stmt -> IF LRB exp RRB stmt . elseiflist ELSE stmt
     (45) elseiflist -> . elseiflist ELSEIF LRB exp RRB stmt
     (46) elseiflist -> .
 
@@ -3252,8 +3277,8 @@ state 139
     WHILE           reduce using rule 46 (elseiflist -> .)
     ON              reduce using rule 46 (elseiflist -> .)
     FOR             reduce using rule 46 (elseiflist -> .)
-    IF              reduce using rule 46 (elseiflist -> .)
     PRINT           reduce using rule 46 (elseiflist -> .)
+    IF              reduce using rule 46 (elseiflist -> .)
     ID              reduce using rule 46 (elseiflist -> .)
     LRB             reduce using rule 46 (elseiflist -> .)
     SUB             reduce using rule 46 (elseiflist -> .)
@@ -3268,31 +3293,6 @@ state 139
     WHERE           reduce using rule 46 (elseiflist -> .)
 
     elseiflist                     shift and go to state 147
-
-state 140
-
-    (44) stmt -> PRINT LRB ID RRB SEMICOLON .
-
-    RCB             reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    RETURN          reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    WHILE           reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    ON              reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    FOR             reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    IF              reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    PRINT           reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    ID              reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    LRB             reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    SUB             reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    NOT             reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    LCB             reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    INTEGERNUMBER   reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    FLOATNUMBER     reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    TRUE            reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    FALSE           reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    ELSE            reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    ELSEIF          reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-    WHERE           reduce using rule 44 (stmt -> PRINT LRB ID RRB SEMICOLON .)
-
 
 state 141
 
@@ -3382,9 +3382,9 @@ state 146
     (39) stmt -> . ON LRB exp RRB LCB RCB SEMICOLON
     (40) stmt -> . FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt
     (41) stmt -> . FOR LRB ID IN ID RRB stmt
-    (42) stmt -> . IF LRB exp RRB stmt elseiflist
-    (43) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
-    (44) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (42) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (43) stmt -> . IF LRB exp RRB stmt elseiflist
+    (44) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
     (47) exp -> . assign
     (48) exp -> . exp operator exp
     (49) exp -> . exp relop exp
@@ -3415,8 +3415,8 @@ state 146
     WHILE           shift and go to state 79
     ON              shift and go to state 80
     FOR             shift and go to state 81
-    IF              shift and go to state 83
-    PRINT           shift and go to state 84
+    PRINT           shift and go to state 83
+    IF              shift and go to state 84
     ID              shift and go to state 82
     LRB             shift and go to state 34
     SUB             shift and go to state 35
@@ -3439,32 +3439,32 @@ state 146
 
 state 147
 
-    (42) stmt -> IF LRB exp RRB stmt elseiflist .
-    (43) stmt -> IF LRB exp RRB stmt elseiflist . ELSE stmt
+    (43) stmt -> IF LRB exp RRB stmt elseiflist .
+    (44) stmt -> IF LRB exp RRB stmt elseiflist . ELSE stmt
     (45) elseiflist -> elseiflist . ELSEIF LRB exp RRB stmt
 
-    RCB             reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    RETURN          reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    WHILE           reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    ON              reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    FOR             reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    IF              reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    PRINT           reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    ID              reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    LRB             reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    SUB             reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    NOT             reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    LCB             reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    INTEGERNUMBER   reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    FLOATNUMBER     reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    TRUE            reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    FALSE           reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    ELSE            reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    ELSEIF          reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
-    WHERE           reduce using rule 42 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    RCB             reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    RETURN          reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    WHILE           reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    ON              reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    FOR             reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    PRINT           reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    IF              reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    ID              reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    LRB             reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    SUB             reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    NOT             reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    LCB             reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    INTEGERNUMBER   reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    FLOATNUMBER     reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    TRUE            reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    FALSE           reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    WHERE           reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .)
+    ELSE            shift and go to state 154
+    ELSEIF          shift and go to state 155
 
-  ! ELSE            [ shift and go to state 154 ]
-  ! ELSEIF          [ shift and go to state 155 ]
+  ! ELSE            [ reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .) ]
+  ! ELSEIF          [ reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist .) ]
 
 
 state 148
@@ -3491,8 +3491,8 @@ state 150
     WHILE           reduce using rule 39 (stmt -> ON LRB exp RRB LCB RCB SEMICOLON .)
     ON              reduce using rule 39 (stmt -> ON LRB exp RRB LCB RCB SEMICOLON .)
     FOR             reduce using rule 39 (stmt -> ON LRB exp RRB LCB RCB SEMICOLON .)
-    IF              reduce using rule 39 (stmt -> ON LRB exp RRB LCB RCB SEMICOLON .)
     PRINT           reduce using rule 39 (stmt -> ON LRB exp RRB LCB RCB SEMICOLON .)
+    IF              reduce using rule 39 (stmt -> ON LRB exp RRB LCB RCB SEMICOLON .)
     ID              reduce using rule 39 (stmt -> ON LRB exp RRB LCB RCB SEMICOLON .)
     LRB             reduce using rule 39 (stmt -> ON LRB exp RRB LCB RCB SEMICOLON .)
     SUB             reduce using rule 39 (stmt -> ON LRB exp RRB LCB RCB SEMICOLON .)
@@ -3560,8 +3560,8 @@ state 153
     WHILE           reduce using rule 41 (stmt -> FOR LRB ID IN ID RRB stmt .)
     ON              reduce using rule 41 (stmt -> FOR LRB ID IN ID RRB stmt .)
     FOR             reduce using rule 41 (stmt -> FOR LRB ID IN ID RRB stmt .)
-    IF              reduce using rule 41 (stmt -> FOR LRB ID IN ID RRB stmt .)
     PRINT           reduce using rule 41 (stmt -> FOR LRB ID IN ID RRB stmt .)
+    IF              reduce using rule 41 (stmt -> FOR LRB ID IN ID RRB stmt .)
     ID              reduce using rule 41 (stmt -> FOR LRB ID IN ID RRB stmt .)
     LRB             reduce using rule 41 (stmt -> FOR LRB ID IN ID RRB stmt .)
     SUB             reduce using rule 41 (stmt -> FOR LRB ID IN ID RRB stmt .)
@@ -3578,7 +3578,7 @@ state 153
 
 state 154
 
-    (43) stmt -> IF LRB exp RRB stmt elseiflist ELSE . stmt
+    (44) stmt -> IF LRB exp RRB stmt elseiflist ELSE . stmt
     (33) stmt -> . RETURN exp SEMICOLON
     (34) stmt -> . exp SEMICOLON
     (35) stmt -> . block
@@ -3588,9 +3588,9 @@ state 154
     (39) stmt -> . ON LRB exp RRB LCB RCB SEMICOLON
     (40) stmt -> . FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt
     (41) stmt -> . FOR LRB ID IN ID RRB stmt
-    (42) stmt -> . IF LRB exp RRB stmt elseiflist
-    (43) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
-    (44) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (42) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (43) stmt -> . IF LRB exp RRB stmt elseiflist
+    (44) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
     (47) exp -> . assign
     (48) exp -> . exp operator exp
     (49) exp -> . exp relop exp
@@ -3621,8 +3621,8 @@ state 154
     WHILE           shift and go to state 79
     ON              shift and go to state 80
     FOR             shift and go to state 81
-    IF              shift and go to state 83
-    PRINT           shift and go to state 84
+    PRINT           shift and go to state 83
+    IF              shift and go to state 84
     ID              shift and go to state 82
     LRB             shift and go to state 34
     SUB             shift and go to state 35
@@ -3659,8 +3659,8 @@ state 156
     WHILE           reduce using rule 38 (stmt -> ON LRB exp RRB LCB cases RCB SEMICOLON .)
     ON              reduce using rule 38 (stmt -> ON LRB exp RRB LCB cases RCB SEMICOLON .)
     FOR             reduce using rule 38 (stmt -> ON LRB exp RRB LCB cases RCB SEMICOLON .)
-    IF              reduce using rule 38 (stmt -> ON LRB exp RRB LCB cases RCB SEMICOLON .)
     PRINT           reduce using rule 38 (stmt -> ON LRB exp RRB LCB cases RCB SEMICOLON .)
+    IF              reduce using rule 38 (stmt -> ON LRB exp RRB LCB cases RCB SEMICOLON .)
     ID              reduce using rule 38 (stmt -> ON LRB exp RRB LCB cases RCB SEMICOLON .)
     LRB             reduce using rule 38 (stmt -> ON LRB exp RRB LCB cases RCB SEMICOLON .)
     SUB             reduce using rule 38 (stmt -> ON LRB exp RRB LCB cases RCB SEMICOLON .)
@@ -3689,9 +3689,9 @@ state 157
     (39) stmt -> . ON LRB exp RRB LCB RCB SEMICOLON
     (40) stmt -> . FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt
     (41) stmt -> . FOR LRB ID IN ID RRB stmt
-    (42) stmt -> . IF LRB exp RRB stmt elseiflist
-    (43) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
-    (44) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (42) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (43) stmt -> . IF LRB exp RRB stmt elseiflist
+    (44) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
     (47) exp -> . assign
     (48) exp -> . exp operator exp
     (49) exp -> . exp relop exp
@@ -3722,8 +3722,8 @@ state 157
     WHILE           shift and go to state 79
     ON              shift and go to state 80
     FOR             shift and go to state 81
-    IF              shift and go to state 83
-    PRINT           shift and go to state 84
+    PRINT           shift and go to state 83
+    IF              shift and go to state 84
     ID              shift and go to state 82
     LRB             shift and go to state 34
     SUB             shift and go to state 35
@@ -3757,9 +3757,9 @@ state 158
     (39) stmt -> . ON LRB exp RRB LCB RCB SEMICOLON
     (40) stmt -> . FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt
     (41) stmt -> . FOR LRB ID IN ID RRB stmt
-    (42) stmt -> . IF LRB exp RRB stmt elseiflist
-    (43) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
-    (44) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (42) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (43) stmt -> . IF LRB exp RRB stmt elseiflist
+    (44) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
     (47) exp -> . assign
     (48) exp -> . exp operator exp
     (49) exp -> . exp relop exp
@@ -3790,8 +3790,8 @@ state 158
     WHILE           shift and go to state 79
     ON              shift and go to state 80
     FOR             shift and go to state 81
-    IF              shift and go to state 83
-    PRINT           shift and go to state 84
+    PRINT           shift and go to state 83
+    IF              shift and go to state 84
     ID              shift and go to state 82
     LRB             shift and go to state 34
     SUB             shift and go to state 35
@@ -3814,27 +3814,27 @@ state 158
 
 state 159
 
-    (43) stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .
+    (44) stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .
 
-    RCB             reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    RETURN          reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    WHILE           reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    ON              reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    FOR             reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    IF              reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    PRINT           reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    ID              reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    LRB             reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    SUB             reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    NOT             reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    LCB             reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    INTEGERNUMBER   reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    FLOATNUMBER     reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    TRUE            reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    FALSE           reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    ELSE            reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    ELSEIF          reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
-    WHERE           reduce using rule 43 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    RCB             reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    RETURN          reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    WHILE           reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    ON              reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    FOR             reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    PRINT           reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    IF              reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    ID              reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    LRB             reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    SUB             reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    NOT             reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    LCB             reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    INTEGERNUMBER   reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    FLOATNUMBER     reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    TRUE            reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    FALSE           reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    ELSE            reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    ELSEIF          reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
+    WHERE           reduce using rule 44 (stmt -> IF LRB exp RRB stmt elseiflist ELSE stmt .)
 
 
 state 160
@@ -3885,9 +3885,9 @@ state 161
     (39) stmt -> . ON LRB exp RRB LCB RCB SEMICOLON
     (40) stmt -> . FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt
     (41) stmt -> . FOR LRB ID IN ID RRB stmt
-    (42) stmt -> . IF LRB exp RRB stmt elseiflist
-    (43) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
-    (44) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (42) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (43) stmt -> . IF LRB exp RRB stmt elseiflist
+    (44) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
     (47) exp -> . assign
     (48) exp -> . exp operator exp
     (49) exp -> . exp relop exp
@@ -3920,8 +3920,8 @@ state 161
     WHILE           shift and go to state 79
     ON              shift and go to state 80
     FOR             shift and go to state 81
-    IF              shift and go to state 83
-    PRINT           shift and go to state 84
+    PRINT           shift and go to state 83
+    IF              shift and go to state 84
     ID              shift and go to state 82
     LRB             shift and go to state 34
     SUB             shift and go to state 35
@@ -3951,8 +3951,8 @@ state 162
     WHILE           reduce using rule 40 (stmt -> FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt .)
     ON              reduce using rule 40 (stmt -> FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt .)
     FOR             reduce using rule 40 (stmt -> FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt .)
-    IF              reduce using rule 40 (stmt -> FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt .)
     PRINT           reduce using rule 40 (stmt -> FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt .)
+    IF              reduce using rule 40 (stmt -> FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt .)
     ID              reduce using rule 40 (stmt -> FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt .)
     LRB             reduce using rule 40 (stmt -> FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt .)
     SUB             reduce using rule 40 (stmt -> FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt .)
@@ -4016,9 +4016,9 @@ state 164
     (39) stmt -> . ON LRB exp RRB LCB RCB SEMICOLON
     (40) stmt -> . FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt
     (41) stmt -> . FOR LRB ID IN ID RRB stmt
-    (42) stmt -> . IF LRB exp RRB stmt elseiflist
-    (43) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
-    (44) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (42) stmt -> . PRINT LRB ID RRB SEMICOLON
+    (43) stmt -> . IF LRB exp RRB stmt elseiflist
+    (44) stmt -> . IF LRB exp RRB stmt elseiflist ELSE stmt
     (47) exp -> . assign
     (48) exp -> . exp operator exp
     (49) exp -> . exp relop exp
@@ -4049,8 +4049,8 @@ state 164
     WHILE           shift and go to state 79
     ON              shift and go to state 80
     FOR             shift and go to state 81
-    IF              shift and go to state 83
-    PRINT           shift and go to state 84
+    PRINT           shift and go to state 83
+    IF              shift and go to state 84
     ID              shift and go to state 82
     LRB             shift and go to state 34
     SUB             shift and go to state 35
@@ -4080,8 +4080,8 @@ state 165
     WHILE           reduce using rule 45 (elseiflist -> elseiflist ELSEIF LRB exp RRB stmt .)
     ON              reduce using rule 45 (elseiflist -> elseiflist ELSEIF LRB exp RRB stmt .)
     FOR             reduce using rule 45 (elseiflist -> elseiflist ELSEIF LRB exp RRB stmt .)
-    IF              reduce using rule 45 (elseiflist -> elseiflist ELSEIF LRB exp RRB stmt .)
     PRINT           reduce using rule 45 (elseiflist -> elseiflist ELSEIF LRB exp RRB stmt .)
+    IF              reduce using rule 45 (elseiflist -> elseiflist ELSEIF LRB exp RRB stmt .)
     ID              reduce using rule 45 (elseiflist -> elseiflist ELSEIF LRB exp RRB stmt .)
     LRB             reduce using rule 45 (elseiflist -> elseiflist ELSEIF LRB exp RRB stmt .)
     SUB             reduce using rule 45 (elseiflist -> elseiflist ELSEIF LRB exp RRB stmt .)
