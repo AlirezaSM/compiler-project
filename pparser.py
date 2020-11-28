@@ -98,26 +98,25 @@ class Parser:
                 | ON LRB exp RRB LCB RCB SEMICOLON
                 | FOR LRB exp SEMICOLON exp SEMICOLON exp RRB stmt
                 | FOR LRB ID IN ID RRB stmt
-                | IF LRB exp RRB stmt elseiflist
-                | IF LRB exp RRB stmt elseiflist ELSE stmt
+                | IF LRB exp RRB stmt elseiflist %prec P4
+                | IF LRB exp RRB stmt elseiflist ELSE stmt %prec P3
                 | PRINT LRB ID RRB SEMICOLON"""
         pass
 
     def p_elseiflist(self, p):
-        """elseiflist : ELSEIF LRB exp RRB stmt
-                      | elseiflist ELSEIF LRB exp RRB stmt
+        """elseiflist : elseiflist ELSEIF LRB exp RRB stmt
                       | """
         pass
 
-    def p_relopexp(self, p):
-        """relopexp : exp relop exp
-                    | relopexp relop exp"""
-        pass
+    # def p_relopexp(self, p):
+    #     """relopexp : exp relop exp
+    #                 | relopexp relop exp"""
+    #     pass
 
     def p_exp(self, p):
         """exp : assign
                | exp operator exp %prec P1
-               | relopexp %prec P2
+               | exp relop exp %prec P2
                | const
                | lvalue
                | ID LRB explist RRB
@@ -128,8 +127,7 @@ class Parser:
         pass
 
     def p_assign(self, p):
-        """ assign : lvalue ASSIGN exp
-        """
+        """assign : lvalue ASSIGN exp"""
         pass
 
     def p_operator(self, p):
@@ -184,8 +182,10 @@ class Parser:
         # ('left', 'SEMICOLON'),
         # ('left', 'COMMA'),
         ('right', 'ASSIGN'),
-        ('right', 'P2'),
-        ('right', 'P1'),
+        ('left', 'P4'),
+        ('left', 'P3'),
+        ('left', 'P2'),
+        ('left', 'P1'),
         ('left', 'OR'),
         ('left', 'AND'),
         ('left', 'EQ', 'NE'),
