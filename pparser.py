@@ -30,9 +30,9 @@ class Parser:
         pass
 
     def p_iddec(self, p):
-        """iddec : ID
-                 | ID LSB exp RSB
-                 | ID ASSIGN exp"""
+        """iddec : ID %prec P6
+                 | ID LSB exp RSB %prec P6
+                 | ID ASSIGN exp %prec P4"""
         pass
 
     def p_idlist(self, p):
@@ -75,8 +75,8 @@ class Parser:
         pass
 
     def p_lvalue(self, p):
-        """lvalue : ID
-                  | ID LSB exp RSB"""
+        """lvalue : ID %prec P7
+                  | ID LSB exp RSB %prec P7"""
         pass
 
     def p_case(self, p):
@@ -110,21 +110,21 @@ class Parser:
         pass
 
     def p_relopexp(self, p):
-        """relopexp : exp relop exp
+        """relopexp : exp relop exp %prec P3
                     | relopexp relop exp"""
         pass
 
     def p_exp(self, p):
-        """exp : lvalue ASSIGN exp
-               | exp operator exp
+        """exp : lvalue ASSIGN exp %prec P5
+               | exp operator exp %prec P2
                | relopexp
                | const
                | lvalue
                | ID LRB explist RRB
                | LRB exp RRB
                | ID LRB RRB
-               | SUB exp
-               | NOT exp"""
+               | SUB exp %prec P1
+               | NOT exp %prec P1"""
         pass
 
     def p_operator(self, p):
@@ -162,8 +162,22 @@ class Parser:
         "empty : "
         pass
 
+    #precedence = (
+    #    ('left', 'LT', 'GT', 'LE', 'GE', 'NE', 'EQ'),
+    #    ('left', 'SUM', 'SUB'),
+    #    ('left', 'MUL', 'DIV', 'MOD'),
+    #    ('left', 'OR', 'AND'),
+    #    ('left', 'LRB', 'RRB'),
+    #    ('left', 'P7'),
+    #    ('left', 'P6'),
+    #    ('left', 'P5'),
+    #    ('left', 'P4'),
+    #    ('left', 'P3'),
+    #    ('left', 'P2'),
+    #    ('left', 'P1')
+    #)
+
     precedence = (
-        ('left')
         ('left', 'SEMICOLON'),
         ('left', 'COMMA'),
         ('right', 'ASSIGN'),
@@ -173,7 +187,14 @@ class Parser:
         ('left', 'LT', 'GT', 'GE', 'LE'),
         ('left', 'SUM', 'SUB'),
         ('left', 'MUL', 'DIV', 'MOD'),
-        ('left', 'LRB', 'RRB', 'LSB', 'RSB')
+        ('left', 'LRB', 'RRB'),
+        ('left', 'P7'),
+        ('left', 'P6'),
+        ('left', 'P5'),
+        ('left', 'P4'),
+        ('left', 'P3'),
+        ('left', 'P2'),
+        ('left', 'P1')
     )
 
     def p_error(self, p):
