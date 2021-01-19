@@ -202,11 +202,21 @@ class Parser:
         pass
 
     def p_exp_exp_operator(self, p):
-        """exp : exp operator exp %prec P1"""
+        """exp : exp SUM exp
+               | exp SUB exp
+               | exp MUL exp
+               | exp DIV exp
+               | exp MOD exp"""
+        print(p[2])
         pass
 
     def p_exp_exp_relop(self, p):
-        """exp : exp relop exp %prec P2"""
+        """exp : exp GT exp
+               | exp LT exp
+               | exp LE exp
+               | exp GE exp
+               | exp EQ exp
+               | exp NE exp"""
         pass
 
     def p_exp_const(self, p):
@@ -249,25 +259,31 @@ class Parser:
         """operator : OR"""
         pass
 
-    def p_operator_sum(self, p):
-        """operator : SUM"""
-        pass
-
-    def p_operator_sub(self, p):
-        """operator : SUB"""
-        pass
-
-    def p_operator_mul(self, p):
-        """operator : MUL"""
-        pass
-
-    def p_operator_div(self, p):
-        """operator : DIV"""
-        pass
-
-    def p_operator_mod(self, p):
-        """operator : MOD"""
-        pass
+    # def p_operator_sum(self, p):
+    #     """operator : SUM"""
+    #     p[0] = p[1]
+    #     pass
+    #
+    # def p_operator_sub(self, p):
+    #     """operator : SUB"""
+    #     p[0] = p[1]
+    #     pass
+    #
+    #
+    # def p_operator_mul(self, p):
+    #     """operator : MUL"""
+    #     p[0] = p[1]
+    #     pass
+    #
+    # def p_operator_div(self, p):
+    #     """operator : DIV"""
+    #     p[0] = p[1]
+    #     pass
+    #
+    # def p_operator_mod(self, p):
+    #     """operator : MOD"""
+    #     p[0] = p[1]
+    #     pass
 
     def p_const_integernumber(self, p):
         """const : INTEGERNUMBER"""
@@ -285,29 +301,29 @@ class Parser:
         """const : FALSE"""
         pass
 
-    def p_relop_gt(self, p):
-        """relop : GT"""
-        pass
-
-    def p_relop_lt(self, p):
-        """relop : LT"""
-        pass
-
-    def p_relop_ne(self, p):
-        """relop : NE"""
-        pass
-
-    def p_relop_eq(self, p):
-        """relop : EQ"""
-        pass
-
-    def p_relop_le(self, p):
-        """relop : LE"""
-        pass
-
-    def p_relop_ge(self, p):
-        """relop : GE"""
-        pass
+    # def p_relop_gt(self, p):
+    #     """relop : GT"""
+    #     pass
+    #
+    # def p_relop_lt(self, p):
+    #     """relop : LT"""
+    #     pass
+    #
+    # def p_relop_ne(self, p):
+    #     """relop : NE"""
+    #     pass
+    #
+    # def p_relop_eq(self, p):
+    #     """relop : EQ"""
+    #     pass
+    #
+    # def p_relop_le(self, p):
+    #     """relop : LE"""
+    #     pass
+    #
+    # def p_relop_ge(self, p):
+    #     """relop : GE"""
+    #     pass
 
     def p_explist_exp(self, p):
         """explist : exp"""
@@ -318,19 +334,32 @@ class Parser:
         pass
 
     precedence = (
-        ('right', 'ASSIGN'),
+        ('left', "OR"),
+        ('left', "AND"),
+        ('left', "NOT"),
+        ('left', "GT", "LT", "NE", "EQ", "LE", "GE"),
+        ('right', "ASSIGN"),
         ('left', 'P3'),
-        ('left', 'ELSE', 'ELSEIF'),
-        ('left', 'P2'),
-        ('left', 'P1'),
-        ('left', 'OR'),
-        ('left', 'AND'),
-        ('left', 'EQ', 'NE'),
-        ('left', 'LT', 'GT', 'GE', 'LE'),
-        ('left', 'SUM', 'SUB'),
-        ('left', 'MUL', 'DIV', 'MOD'),
-        ('left', 'NOT')
+        ('left', "MOD"),
+        ('left', "SUM", "SUB"),
+        ('left', "MUL", "DIV"),
+        ('left', "ELSE", "ELSEIF"),
     )
+
+    # precedence = (
+    #     ('right', 'ASSIGN'),
+    #     ('left', 'P3'),
+    #     ('left', 'ELSE', 'ELSEIF'),
+    #     # ('left', 'P2'),
+    #     # ('left', 'P1'),
+    #     ('left', 'OR'),
+    #     ('left', 'AND'),
+    #     ('left', 'EQ', 'NE'),
+    #     ('left', 'LT', 'GT', 'GE', 'LE'),
+    #     ('left', 'SUM', 'SUB'),
+    #     ('left', 'MUL', 'DIV', 'MOD'),
+    #     ('left', 'NOT')
+    # )
 
     def p_error(self, p):
         print(p.value)

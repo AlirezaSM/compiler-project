@@ -10,5 +10,5 @@ class CodeGenerator:
         p[0] = NonTerminal()
         p[0].place = temp
         p[0].code = p[0].place + " = "
-        p[0].code += p[1].get_value() + " " + p[2] + " " + p[3].get_value()
-        print(p[0].code)
+        p[0].code += str(p[1].get_value()) + " " + p[2] + " " + str(p[3].get_value())
+        #print(p[0].code)
